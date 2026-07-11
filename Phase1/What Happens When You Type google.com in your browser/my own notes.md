@@ -82,6 +82,46 @@ UDP is a connectionless protocol that prioritizes **speed** and **efficiency** o
 | **Connection** | Connection-oriented | Connectionless |
 | **Retransmission** | Yes (automatic) | No |
 
+
+
+
+
+
+
+
+
+
+#############################################################################
+# Security & Connectivity: TLS & SNI
+
+When browsing the web over HTTPS, securing the connection and routing requests correctly are critical tasks managed by TLS and SNI.
+
+---
+
+## 1. TLS (Transport Layer Security)
+TLS is the cryptographic protocol that ensures data privacy and integrity between a client (browser) and a server.
+
+*   **How it works:** It establishes a "secure tunnel" over a standard TCP connection.
+*   **Key Functions:**
+    *   **Encryption:** Transforms data into an unreadable format, protecting it from middlemen.
+    *   **Authentication:** Uses digital certificates to verify the server's identity (proving it is who it claims to be).
+    *   **Data Integrity:** Ensures that data has not been tampered with or altered during transit.
+*   **The TLS Handshake:** A multi-step process that occurs immediately after the TCP handshake to agree on encryption keys and verify identity.
+
+---
+
+## 2. SNI (Server Name Indication)
+SNI is a critical extension of the TLS protocol that enables modern web hosting.
+
+*   **The Problem:** In the past, a single server (one IP address) could only host one TLS-encrypted website because the server didn't know which certificate to show until the encrypted connection was established.
+*   **The Solution:** SNI allows the client to send the **hostname** (e.g., `google.com`) during the very first step of the TLS handshake.
+*   **Why it matters:** It enables **Virtual Hosting**, allowing multiple websites with different SSL certificates to share the same IP address securely.
+
+---
+
+## 💡 Key Takeaways for Backend Engineers
+*   **HTTPS Architecture:** HTTPS is effectively `HTTP over TLS`. TLS acts as the secure layer residing between the HTTP application layer and the TCP transport layer.
+*   **Scalability:** Thanks to **SNI**, you can deploy multiple microservices or websites on a single server instance without needing a dedicated IP for each one, making infrastructure significantly cheaper and easier to manage.
 ---
 
 ## 💡 Key Takeaway for Backend Engineers
